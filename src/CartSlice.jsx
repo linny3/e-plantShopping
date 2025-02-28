@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { current, createSlice } from '@reduxjs/toolkit';
 
 export const CartSlice = createSlice({
   name: 'cart',
@@ -7,13 +7,22 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-        console.log("additem click")
+        const itemInCart = state.items.find((item) => item.name === action.payload.name);
+        if (itemInCart) {
+            itemInCart.quantity++;
+        } else {
+            state.items.push({...action.payload, quantity: 1})
+        }
+        
+        
+        
     },
     removeItem: (state, action) => {
+        state.items.filter(item => item.name != action.payload.name)
+        console.log(current(state.items))
     },
     updateQuantity: (state, action) => {
-
-    
+      
     },
   },
 });
