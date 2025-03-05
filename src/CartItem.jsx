@@ -18,7 +18,6 @@ const CartItem = ({ onContinueShopping }) => {
                 totalCost += item.quantity * cost;
             }
         });
-        console.log(totalCost);
         return totalCost;
   };
 
